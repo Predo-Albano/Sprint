@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Usuário</title>
+</head>
+<body>
+    <h2>Criar Novo Usuário</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('criar_usuario') }}" method="POST">
+        <div>
+            <label for="username">Nome de Usuário</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div>
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div>
+            <label for="is_admin">É Administrador?</label>
+            <input type="checkbox" name="is_admin" id="is_admin">
+        </div>
+        <button type="submit">Criar Usuário</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}" style="display:block; margin-top:20px;">Voltar ao Dashboard</a>
+</body>
+</html>
