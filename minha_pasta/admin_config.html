@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuração de Horários</title>
+</head>
+<body>
+    <h2>Configuração de Horários</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('configurar') }}" method="POST" style="max-width: 500px; margin: 0 auto;">
+        <div>
+            <label for="start_time">Horário de Início</label>
+            <input type="time" name="start_time" id="start_time" value="{{ settings.start_time }}" required>
+        </div>
+        <div>
+            <label for="end_time">Horário de Fim</label>
+            <input type="time" name="end_time" id="end_time" value="{{ settings.end_time }}" required>
+        </div>
+        <div>
+            <label for="interval">Intervalo entre agendamentos (em minutos)</label>
+            <input type="number" name="interval" id="interval" value="{{ settings.interval }}" required>
+        </div>
+        <button type="submit" style="margin-top: 10px;">Salvar</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}" style="display:block; margin-top:20px;">Voltar ao Dashboard</a>
+</body>
+</html>
